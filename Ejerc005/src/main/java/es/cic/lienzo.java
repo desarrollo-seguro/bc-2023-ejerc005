@@ -3,16 +3,34 @@ package es.cic;
 import java.util.ArrayList;
 
 public class lienzo {
-    private ArrayList<Figura> figurasLienzo;
+
+    private ArrayList<CirculoImpl> circulosLienzo;
+  
 
     private final int LIENZO_MAX_X=1000000,LIENZO_MAX_Y=1000000;
 
     public lienzo() {
-        this.figurasLienzo = new ArrayList<Figura>();
+        this.circulosLienzo = new ArrayList<CirculoImpl>();
+        
     }
 
-    public void CrearFigura(Figura figura){
-              
+    public void CrearFigura(Figura figura,FiguraEnum tipo){
+        
+        switch(tipo){
+            case Circulo:
+                CirculoImpl circulo = (CirculoImpl)figura;
+                if(estaDentro(circulo.getPos())){
+                    circulo.setId(circulosLienzo.size());
+                    circulosLienzo.add((CirculoImpl)circulo.aniadirFigura(circulo.getRadio(),circulo.getColor(),circulo.getPos()));
+                }
+                break;
+            case Cudrilatero:
+                break;
+            case Punto:
+                break;
+            case Linea:
+                break;
+        }
     }
 
     public boolean estaDentro(Posicion posicion){
@@ -23,12 +41,52 @@ public class lienzo {
         }
     }
 
-    public ArrayList<Figura> getFigurasLienzo() {
-        return figurasLienzo;
+    public void modificarPosFigura(Posicion posNueva,Figura figura,FiguraEnum tipo){
+        switch(tipo){
+            case Circulo:
+                CirculoImpl circulo = (CirculoImpl)figura;
+                circulo.moverFigura(posNueva);
+                circulosLienzo.get(circulo.getId()).setPos(posNueva);
+                 
+                break;
+            case Cudrilatero:
+                break;
+            case Punto:
+                    break;
+            case Linea:
+                break;
+               
+            }
     }
 
-    public void setFigurasLienzo(ArrayList<Figura> figurasLienzo) {
-        this.figurasLienzo = figurasLienzo;
+    public void modificarTamanoFigura(Figura figura,double parametro,FiguraEnum tipo){
+            switch(tipo){
+                case Circulo:
+                    CirculoImpl circulo = (CirculoImpl)figura;
+                    CirculoImpl cir=(CirculoImpl)circulo.modificarFigura(parametro);
+                    circulosLienzo.get(cir.getId()).setPerimetro(parametro);
+                   // figurasLienzo.get(cir.getId()).setPerimetro();
+                    break;
+                case Cudrilatero:
+                    break;
+                case Punto:
+                    break;
+                case Linea:
+                    break;
+            }
+    }
+
+    
+    public void eliminarFigura(int figuraId){
+        circulosLienzo.remove(figuraId);
+    }
+
+    public ArrayList<CirculoImpl> getCirculosLienzo() {
+        return circulosLienzo;
+    }
+
+    public void setCirculosLienzo(ArrayList<CirculoImpl> figurasLienzo) {
+        this.circulosLienzo = figurasLienzo;
     }
 
     public int getLIENZO_MAX_X() {

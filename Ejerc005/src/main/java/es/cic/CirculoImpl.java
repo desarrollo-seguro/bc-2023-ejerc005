@@ -5,37 +5,36 @@ public class CirculoImpl  implements Figura {
     private int id;
     private double radio;
     private String color;
-    private double posX,posY;
+  
     private double perimetro;
+    private Posicion pos;
    
-    public CirculoImpl(double radio, String color, double posX, double posY) {
-        this.radio = radio;
-        this.color = color;
-        this.posX = posX;
-        this.posY = posY;
+   
+    public CirculoImpl() {
+       
     }
  
     @Override
-    public Figura aniadirFigura(double radio, String color, double posX, double posY) {
+    public Figura aniadirFigura(double radio, String color,Posicion pos) {
         this.radio = radio;
         perimetro = 2*Math.PI*radio;
         this.color = color;
-        this.posX = posX;
-        this.posY = posY;
+        this.pos = pos;
 
         return this;
     }
 
     @Override
-    public void modificarFigura(double radio) {
+    public Figura modificarFigura(double radio) {
         this.radio = radio;
-        perimetro = 2*Math.PI*radio;
+        this.perimetro = 2*Math.PI*radio;
+
+        return this;
     }
 
     @Override
-    public void moverFigura(double posX, double posY) {
-        setPosX(posX);
-        setPosY(posY);
+    public void moverFigura(Posicion pos) {
+        this.setPos(pos);
     }
     public double getRadio() {
         return radio;
@@ -48,18 +47,6 @@ public class CirculoImpl  implements Figura {
     }
     public void setColor(String color) {
         this.color = color;
-    }
-    public double getPosX() {
-        return posX;
-    }
-    public void setPosX(double posX) {
-        this.posX = posX;
-    }
-    public double getPosY() {
-        return posY;
-    }
-    public void setPosY(double posY) {
-        this.posY = posY;
     }
     public int getId() {
         return id;
@@ -76,5 +63,12 @@ public class CirculoImpl  implements Figura {
         this.perimetro = 2*Math.PI*radio;
     }
 
-  
+    public Posicion getPos() {
+        return pos;
+    }
+
+    public void setPos(Posicion pos) {
+        this.pos = pos;
+    }
+
 }

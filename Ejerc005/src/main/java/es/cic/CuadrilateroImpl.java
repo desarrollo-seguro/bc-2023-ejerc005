@@ -20,18 +20,18 @@ public class CuadrilateroImpl implements Figura {
 
 
     @Override
-    public Figura aniadirFigura(double parametro, String color, double posX, double posY) {
+    public Figura aniadirFigura(double parametro, String color, Posicion pos) {
         
         return this;
     }
     
     @Override
-    public void modificarFigura(double nuevaDiagonal) {
+    public Figura modificarFigura(double nuevaDiagonal) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'modificarFigura'");
     }
     @Override
-    public void moverFigura(double posX, double posY) {
+    public void moverFigura(Posicion pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'moverFigura'");
     }
