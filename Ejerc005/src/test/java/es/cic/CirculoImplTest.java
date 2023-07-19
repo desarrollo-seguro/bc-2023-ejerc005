@@ -33,7 +33,7 @@ class CirculoImplTest {
         cut.modificarFigura(10);
         double esperado = 2*Math.PI*10;
         assertEquals(esperado, cut.getPerimetro(), 0.001);
-
+        assertNotEquals(-esperado, cut.getPerimetro());
     }
 
     @Test
@@ -41,7 +41,6 @@ class CirculoImplTest {
     	cut.moverFigura(20, 300);
         
         assertEquals( 20, cut.getPosX(), 0.01);
-        assertEquals( 300, cut.getPosY(), 0.01);
-        
+        assertEquals( 300, cut.getPosY(), 0.01); 
     }
 }
