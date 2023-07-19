@@ -6,35 +6,36 @@ public class CirculoImpl  implements Figura {
     private double radio;
     private String color;
     private double posX,posY;
-
-
+    private double perimetro;
+   
     public CirculoImpl(double radio, String color, double posX, double posY) {
         this.radio = radio;
         this.color = color;
         this.posX = posX;
         this.posY = posY;
     }
+ 
     @Override
-    public void CambiarColor(int figuraId, String color) {
-        // TODO Auto-generated method stub
-        
+    public Figura aniadirFigura(double radio, String color, double posX, double posY) {
+        this.radio = radio;
+        perimetro = 2*Math.PI*radio;
+        this.color = color;
+        this.posX = posX;
+        this.posY = posY;
+
+        return this;
     }
-   
+
     @Override
-    public boolean comprobarPosicion(double posX, double posY) {
-        // TODO Auto-generated method stub
-        return false;
+    public void modificarFigura(double radio) {
+        this.radio = radio;
+        perimetro = 2*Math.PI*radio;
     }
-    
+
     @Override
-    public void modificarFIgura(int figuraId, Figura nuevaFigura) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void moverFigura(int figuraId, double posX, double posY) {
-        // TODO Auto-generated method stub
-        
+    public void moverFigura(double posX, double posY) {
+        setPosX(posX);
+        setPosY(posY);
     }
     public double getRadio() {
         return radio;
@@ -65,6 +66,15 @@ public class CirculoImpl  implements Figura {
     }
     public void setId(int id) {
         this.id = id;
+    }    
+
+    public double getPerimetro() {
+        return perimetro;
     }
-    
+
+    public void setPerimetro(double radio){
+        this.perimetro = 2*Math.PI*radio;
+    }
+
+  
 }

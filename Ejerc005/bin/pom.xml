@@ -23,13 +23,6 @@
 
 <!-- ... -->
 <dependencies>
-	<dependency>
-	    <groupId>commons-io</groupId>
-	    <artifactId>commons-io</artifactId>
-	    <version>${commons-io.version}</version>
-	</dependency>
-
-
     <!-- Only needed to run tests in a version of IntelliJ IDEA that bundles older versions -->
     <dependency>
         <groupId>org.junit.platform</groupId>
@@ -46,30 +39,25 @@
         <artifactId>junit-vintage-engine</artifactId>
         <scope>test</scope>
     </dependency>
-    <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest</artifactId>
-        <version>2.2</version>      
-        <scope>test</scope>
-    </dependency>
-	<dependency>
-    	<groupId>org.mockito</groupId>
-    	<artifactId>mockito-core</artifactId>
-    	<version>${mockito.version}</version>
-    	<scope>test</scope>
-	</dependency>
 </dependencies>
 <dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.junit</groupId>
             <artifactId>junit-bom</artifactId>
-            <version>${junit.version}</version>
+            <version>5.9.3</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+        <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest</artifactId>
+          <version>2.2</version>
+          <scope>test</scope>
+        </dependency>
     </dependencies>
 </dependencyManagement>
+
 
 
    <build>

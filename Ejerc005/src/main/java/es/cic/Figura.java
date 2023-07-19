@@ -2,9 +2,8 @@ package es.cic;
 
 
 public interface Figura {
-    
-    public void CambiarColor(int figuraId,String color);
-    public void modificarFIgura(int figuraId,Figura nuevaFigura);
-    public void moverFigura(int figuraId, double posX,double posY);   
-    public boolean comprobarPosicion(double posX,double posY);
+    public Figura aniadirFigura(double parametro,String color,double posX,double posY);
+    public void modificarFigura(double nuevaDiagonal);
+    public void moverFigura(double posX,double posY);   
+  
 }
