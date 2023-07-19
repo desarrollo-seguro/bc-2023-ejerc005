@@ -1,39 +1,31 @@
 package es.cic;
 
-import java.awt.Color;
+public class CirculoImpl  implements Figura {
 
-public class circulo implements Figura {
+    private int id;
     private double radio;
-    private Color color;
+    private String color;
     private double posX,posY;
 
 
-    public circulo(double radio, Color color, double posX, double posY) {
+    public CirculoImpl(double radio, String color, double posX, double posY) {
         this.radio = radio;
         this.color = color;
         this.posX = posX;
         this.posY = posY;
     }
     @Override
-    public void CambiarColor(int figuraId, Color color) {
+    public void CambiarColor(int figuraId, String color) {
         // TODO Auto-generated method stub
         
     }
-    @Override
-    public void aniadirFigura(Figura figura, double posX, double posY, Color color) {
-        // TODO Auto-generated method stub
-        
-    }
+   
     @Override
     public boolean comprobarPosicion(double posX, double posY) {
         // TODO Auto-generated method stub
         return false;
     }
-    @Override
-    public void eliminarFigura(int figuraId) {
-        // TODO Auto-generated method stub
-        
-    }
+    
     @Override
     public void modificarFIgura(int figuraId, Figura nuevaFigura) {
         // TODO Auto-generated method stub
@@ -50,10 +42,10 @@ public class circulo implements Figura {
     public void setRadio(double radio) {
         this.radio = radio;
     }
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
     public double getPosX() {
@@ -68,8 +60,11 @@ public class circulo implements Figura {
     public void setPosY(double posY) {
         this.posY = posY;
     }
-
-
-   
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

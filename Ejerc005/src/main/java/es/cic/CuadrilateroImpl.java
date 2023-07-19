@@ -1,22 +1,19 @@
 package es.cic;
-import java.awt.Color;
+
 
 public class CuadrilateroImpl implements Figura {
+    private int id;
     private double lado;
     private double posX,posY;
-    private Color color;
+    private String color;
 
+    
 
-    @Override
-    public void aniadirFigura(Figura figura, double posX, double posY,Color color) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aniadirFigura'");
-    }
-
-    @Override
-    public void eliminarFigura(int figuraId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarFigura'");
+    public CuadrilateroImpl(double lado, double posX, double posY, String color) {
+        this.lado = lado;
+        this.posX = posX;
+        this.posY = posY;
+        this.color = color;
     }
 
     @Override
@@ -38,11 +35,11 @@ public class CuadrilateroImpl implements Figura {
     }
 
     @Override
-    public void CambiarColor(int figuraId, Color color) {
+    public void CambiarColor(int figuraId, String color) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'CambiarColor'");
     }
-    
+
 
     public double getLado() {
 		return lado;
@@ -68,12 +65,20 @@ public class CuadrilateroImpl implements Figura {
         this.posY = posY;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     
