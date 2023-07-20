@@ -2,14 +2,13 @@ package es.cic;
 
 import java.util.ArrayList;
 
-public class lienzo {
-
+public class Lienzo {
     private ArrayList<CirculoImpl> circulosLienzo;
   
 
     private final int LIENZO_MAX_X=1000000,LIENZO_MAX_Y=1000000;
 
-    public lienzo() {
+    public Lienzo() {
         this.circulosLienzo = new ArrayList<CirculoImpl>();
         
     }
@@ -34,7 +33,7 @@ public class lienzo {
     }
 
     public boolean estaDentro(Posicion posicion){
-        if(posicion.getPosX()>LIENZO_MAX_X || posicion.getPosY()>LIENZO_MAX_Y){
+        if(posicion.getPosX()<LIENZO_MAX_X || posicion.getPosY()<LIENZO_MAX_Y){
             return true;
         }else{
             return false;

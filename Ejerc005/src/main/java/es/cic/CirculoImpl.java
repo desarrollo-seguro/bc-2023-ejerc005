@@ -13,7 +13,18 @@ public class CirculoImpl  implements Figura {
     public CirculoImpl() {
        
     }
+
+    
  
+    public CirculoImpl(double radio, String color,  Posicion pos) {
+        this.radio = radio;
+        this.color = color;
+        
+        this.pos = pos;
+    }
+
+
+
     @Override
     public Figura aniadirFigura(double radio, String color,Posicion pos) {
         this.radio = radio;
