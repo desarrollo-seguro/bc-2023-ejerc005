@@ -1,98 +1,98 @@
 package es.cic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Lienzo {
-    private ArrayList<CirculoImpl> circulosLienzo;
+    private List<Figura> figuras;
   
 
-    private final int LIENZO_MAX_X=1000000,LIENZO_MAX_Y=1000000;
+    private static final int LIENZO_MAX_X=1000000,LIENZO_MAX_Y=1000000;
 
     public Lienzo() {
-        this.circulosLienzo = new ArrayList<CirculoImpl>();
-        
+        this.figuras = new ArrayList<>();
     }
 
-    public void CrearFigura(Figura figura,FiguraEnum tipo){
-        
-        switch(tipo){
-            case Circulo:
-                CirculoImpl circulo = (CirculoImpl)figura;
-                if(estaDentro(circulo.getPos())){
-                    circulo.setId(circulosLienzo.size());
-                    circulosLienzo.add((CirculoImpl)circulo.aniadirFigura(circulo.getRadio(),circulo.getColor(),circulo.getPos()));
-                }
-                break;
-            case Cudrilatero:
-                break;
-            case Punto:
-                break;
-            case Linea:
-                break;
+    public void pintar(Figura figura){
+    	if (noEstaDentro(figura.getPosicion())) {
+			throw new LienzoException("Figura fuera de los limites", figura); 
+    	}
+		if (isIdDuplicado(figura)) {
+			throw new LienzoException("id de figura duplicado", figura);
+		}
+    	
+		figuras.add(figura);
+    }
+
+
+    public void mover(Figura figura, Posicion nuevaPosicion){
+    	if (noEstaDentro(nuevaPosicion)) {
+			throw new LienzoException(
+					String.format("Nueva posicion %d, %d, fuera de los limites", nuevaPosicion.getPosX(), nuevaPosicion.getPosY()), 
+					figura); 
+    	}
+    	
+    	figura.setPos(nuevaPosicion);
+    }
+
+	public void cambiar(Redimensionable figura, Object tamano) {
+		figura.cambiarTamano(tamano);
+	}
+
+
+	public boolean isRedimensionable(Figura figura) {
+		return Redimensionable.class.isAssignableFrom(figura.getClass());
+	}
+	
+	
+    public void eliminarFigura(int id){
+        for(int i = 0 ; i < figuras.size(); i++) {
+        	if (figuras.get(i).getId() == id) {
+        		figuras.remove(id);
+        		return;
+        	}
         }
-    }
-
-    public boolean estaDentro(Posicion posicion){
-        if(posicion.getPosX()<LIENZO_MAX_X || posicion.getPosY()<LIENZO_MAX_Y){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public void modificarPosFigura(Posicion posNueva,Figura figura,FiguraEnum tipo){
-        switch(tipo){
-            case Circulo:
-                CirculoImpl circulo = (CirculoImpl)figura;
-                circulo.moverFigura(posNueva);
-                circulosLienzo.get(circulo.getId()).setPos(posNueva);
-                 
-                break;
-            case Cudrilatero:
-                break;
-            case Punto:
-                    break;
-            case Linea:
-                break;
-               
-            }
-    }
-
-    public void modificarTamanoFigura(Figura figura,double parametro,FiguraEnum tipo){
-            switch(tipo){
-                case Circulo:
-                    CirculoImpl circulo = (CirculoImpl)figura;
-                    CirculoImpl cir=(CirculoImpl)circulo.modificarFigura(parametro);
-                    circulosLienzo.get(cir.getId()).setPerimetro(parametro);
-                   // figurasLienzo.get(cir.getId()).setPerimetro();
-                    break;
-                case Cudrilatero:
-                    break;
-                case Punto:
-                    break;
-                case Linea:
-                    break;
-            }
+        	
+//    	
+//        Figura aEliminar = null;
+//        for (Figura f: figuras) {
+//    		if (f.getId() == id) {
+//    			aEliminar = f;
+//    			break;
+//    		}
+//    	  }
+//        if (aEliminar != null) {
+//        	figuras.remove(aEliminar);
+//        }
+//        
     }
 
     
-    public void eliminarFigura(int figuraId){
-        circulosLienzo.remove(figuraId);
-    }
 
-    public ArrayList<CirculoImpl> getCirculosLienzo() {
-        return circulosLienzo;
-    }
+	private boolean isIdDuplicado(Figura figura) {
+		for (int i = 0 ; i < figuras.size(); i++) {
+			if (figuras.get(i).getId() == figura.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public void setCirculosLienzo(ArrayList<CirculoImpl> figurasLienzo) {
-        this.circulosLienzo = figurasLienzo;
+    private boolean noEstaDentro(Posicion posicion){
+        if(posicion.getPosX()<LIENZO_MAX_X || posicion.getPosY()<LIENZO_MAX_Y){
+            return false;
+        }else{
+            return true;
+        }
     }
+	
+	public List<Figura> getFiguras() {
+		return figuras;
+	}
 
-    public int getLIENZO_MAX_X() {
-        return LIENZO_MAX_X;
-    }
+	public void setFiguras(List<Figura> figuras) {
+		this.figuras = figuras;
+	}
+    
 
-    public int getLIENZO_MAX_Y() {
-        return LIENZO_MAX_Y;
-    }
 }
